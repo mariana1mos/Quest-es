@@ -1,43 +1,133 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Menu do Repositório</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 2rem;
-      background-color: #f9f9f9;
-    }
-    h1 {
-      color: #333;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin-bottom: 1rem;
-    }
-    a {
-      text-decoration: none;
-      color: #1a73e8;
-      font-size: 1.2rem;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Simulado: Gênese do Solo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+    background-color: #f5f5f5;
+  }
+  h1 {
+    color: #2a5d84;
+  }
+  .question {
+    background: white;
+    padding: 15px;
+    margin-bottom: 1.2rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+  }
+  .question h3 {
+    margin-top: 0;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #2a5d84;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .feedback {
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .correct {
+    color: green;
+  }
+  .incorrect {
+    color: red;
+  }
+</style>
 </head>
 <body>
-  <h1>Menu dos Quizzes</h1>
-  <ul>
-    <li><a href="quiz1.html">Quiz 1 - Primeiras 10 questões</a></li>
-    <li><a href="quiz2.html">Quiz 2 - Últimas 10 questões</a></li>
-    <li><a href="outroarquivo.html">Outro Arquivo</a></li>
-    <!-- Adicione mais itens aqui conforme adicionar arquivos no repositório -->
-  </ul>
-</body>
-</html>
-<a href="seuarquivo.html">Título do seu arquivo</a>
+
+<h1>Simulado: Gênese do Solo</h1>
+
+<form id="quizForm">
+
+<div class="question" id="q1">
+  <h3>1. Qual dos fatores a seguir NÃO é considerado fator de formação do solo?</h3>
+  <label><input type="radio" name="q1" value="A"> A) Material de origem</label>
+  <label><input type="radio" name="q1" value="B"> B) Tempo</label>
+  <label><input type="radio" name="q1" value="C"> C) Ação humana</label>
+  <label><input type="radio" name="q1" value="D"> D) Gravidade</label>
+  <div class="feedback" id="feedback1"></div>
+</div>
+
+<div class="question" id="q2">
+  <h3>2. O que representa o horizonte "A" no perfil do solo?</h3>
+  <label><input type="radio" name="q2" value="A"> A) Rocha matriz</label>
+  <label><input type="radio" name="q2" value="B"> B) Camada orgânica superficial</label>
+  <label><input type="radio" name="q2" value="C"> C) Camada mineral rica em matéria orgânica</label>
+  <label><input type="radio" name="q2" value="D"> D) Horizonte de transição</label>
+  <div class="feedback" id="feedback2"></div>
+</div>
+
+<!-- Repita o padrão abaixo para todas as questões -->
+
+<div class="question" id="q3">
+  <h3>3. O intemperismo físico influencia a gênese do solo através de:</h3>
+  <label><input type="radio" name="q3" value="A"> A) Decomposição química das rochas</label>
+  <label><input type="radio" name="q3" value="B"> B) Fragmentação mecânica das rochas</label>
+  <label><input type="radio" name="q3" value="C"> C) Acúmulo de matéria orgânica</label>
+  <label><input type="radio" name="q3" value="D"> D) Movimentação de água no solo</label>
+  <div class="feedback" id="feedback3"></div>
+</div>
+
+<div class="question" id="q4">
+  <h3>4. O que é pedogênese?</h3>
+  <label><input type="radio" name="q4" value="A"> A) Formação e desenvolvimento dos solos</label>
+  <label><input type="radio" name="q4" value="B"> B) Formação de rochas sedimentares</label>
+  <label><input type="radio" name="q4" value="C"> C) Processo de erosão do solo</label>
+  <label><input type="radio" name="q4" value="D"> D) Ciclo hidrológico</label>
+  <div class="feedback" id="feedback4"></div>
+</div>
+
+<div class="question" id="q5">
+  <h3>5. Qual dos seguintes elementos é essencial para o desenvolvimento da matéria orgânica no solo?</h3>
+  <label><input type="radio" name="q5" value="A"> A) Nitrogênio</label>
+  <label><input type="radio" name="q5" value="B"> B) Ferro</label>
+  <label><input type="radio" name="q5" value="C"> C) Cálcio</label>
+  <label><input type="radio" name="q5" value="D"> D) Potássio</label>
+  <div class="feedback" id="feedback5"></div>
+</div>
+
+<div class="question" id="q6">
+  <h3>6. O solo é resultado da interação entre fatores como:</h3>
+  <label><input type="radio" name="q6" value="A"> A) Vegetação, clima, relevo, material parental e tempo</label>
+  <label><input type="radio" name="q6" value="B"> B) Rochas, oceanos, vento, fogo e tempo</label>
+  <label><input type="radio" name="q6" value="C"> C) Solo, água, ar, fogo e luz</label>
+  <label><input type="radio" name="q6" value="D"> D) Pedras, areia, argila, humidade e calor</label>
+  <div class="feedback" id="feedback6"></div>
+</div>
+
+<div class="question" id="q7">
+  <h3>7. Como o relevo influencia a gênese do solo?</h3>
+  <label><input type="radio" name="q7" value="A"> A) Através da textura do solo</label>
+  <label><input type="radio" name="q7" value="B"> B) Controlando o movimento da água e a erosão</label>
+  <label><input type="radio" name="q7" value="C"> C) Modificando a composição química do material de origem</label>
+  <label><input type="radio" name="q7" value="D"> D) Alterando a matéria orgânica</label>
+  <div class="feedback" id="feedback7"></div>
+</div>
+
+<div class="question" id="q8">
+  <h3>8. O tempo influencia a gênese do solo porque:</h3>
+  <label><input type="radio" name="q8" value="A"> A) Permite a alteração dos minerais e acúmulo de matéria orgânica</label>
+  <label><input type="radio" name="q8" value="B"> B) Afeta a composição química da atmosfera</label>
+  <label><input type="radio" name="q8" value="C"> C) Determina a textura da rocha parental</label>
+  <label><input type="radio" name="q8" value="D"> D) Modifica o relevo</label>
+  <div class="feedback" id="feedback8"></div>
+</div>
+
+<div class="question" id="q9">
+  <h3>9. A presença de vegetação na gênese do solo
