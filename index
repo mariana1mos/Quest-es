@@ -1,23 +1,122 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Repositório de Questões</title>
-  <style>
-    body {
-      background-color: #f0f0f0;
-      color: #2c3e50;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 100px;
-    }
-    h1 {
-      font-size: 36px;
-      color: #c0392b;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Simulado para Perito Criminal - IGP-SC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .feedback {
+            display: none;
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Bem-vindo à droga do seu repositório de questões</h1>
+    <h1>Simulado de Perito Criminal - IGP-SC</h1>
+    <form id="quizForm"></form>
+    <button class="button" onclick="checkAnswers()">Finalizar e Ver Gabarito</button>
+    <div id="result" class="feedback"></div>
+
+    <script>
+        const questions = [
+            // QUESTÕES SOBRE A AMAZÔNIA BASEADAS NO PDF
+            { question: "Qual a porcentagem aproximada da floresta amazônica contida no território brasileiro?", options: ["45%", "50%", "60%", "70%"], answer: 2, feedback: "Cerca de 60% da floresta amazônica está no Brasil." },
+            { question: "Qual é o ponto mais alto do Brasil localizado na Amazônia?", options: ["Monte Roraima", "Pico da Neblina", "Serra do Divisor", "Monte Pascoal"], answer: 1, feedback: "O Pico da Neblina, com 2.993 metros, é o ponto mais alto do Brasil." },
+            { question: "Como se chama a floresta inundada sazonalmente por rios de água branca?", options: ["Igapó", "Campinarana", "Floresta de várzea", "Mata de terra firme"], answer: 2, feedback: "A floresta de várzea é sazonalmente alagada por rios de água branca." },
+            { question: "Qual bioma ocupa cerca de 49% do território brasileiro?", options: ["Caatinga", "Cerrado", "Amazônia", "Mata Atlântica"], answer: 2, feedback: "A Amazônia é o maior bioma do Brasil, ocupando cerca de 49,29% do território." },
+            { question: "O que caracteriza as florestas de igapó?", options: ["Alagamento sazonal", "Solo fértil", "Inundação permanente", "Altas altitudes"], answer: 2, feedback: "As florestas de igapó permanecem constantemente alagadas." },
+            { question: "Qual rio dá nome à floresta amazônica?", options: ["Rio Solimões", "Rio Amazonas", "Rio Negro", "Rio Madeira"], answer: 1, feedback: "A floresta recebe seu nome do Rio Amazonas, o maior do mundo em volume de água." },
+            { question: "Que nome é dado à área legalmente definida no Brasil para fins de planejamento da Amazônia?", options: ["Amazônia Verde", "Amazônia Natural", "Amazônia Legal", "Amazônia Protegida"], answer: 2, feedback: "A Amazônia Legal é uma área definida pelo governo para fins de planejamento e desenvolvimento." },
+            // Continuação até 30 questões...
+            { question: "Qual cidade brasileira fica próxima ao ponto mais alto da Amazônia?", options: ["Manaus", "Boa Vista", "São Gabriel da Cachoeira", "Belém"], answer: 2, feedback: "São Gabriel da Cachoeira está próxima ao Pico da Neblina." },
+            { question: "Qual o principal fator climático que define a Amazônia?", options: ["Frio intenso", "Secas prolongadas", "Chuvas abundantes", "Temperaturas abaixo de 10°C"], answer: 2, feedback: "A Amazônia é definida por clima quente e úmido, com chuvas abundantes." },
+            { question: "O termo 'Hileia' foi utilizado por qual pesquisador para denominar a Amazônia?", options: ["Martius", "Spruce", "Humboldt", "Ducke"], answer: 2, feedback: "Humboldt usou o termo 'Hileia' para se referir à Amazônia." },
+            { question: "Qual é o nome do rio subterrâneo encontrado sob o Rio Amazonas?", options: ["Solimões", "Madeira", "Hamza", "Negro"], answer: 2, feedback: "Hamza é o rio subterrâneo identificado sob o Amazonas." },
+            { question: "A floresta amazônica abriga cerca de quantas espécies de plantas catalogadas?", options: ["1.000", "10.000", "40.000", "438.000"], answer: 3, feedback: "Estudos identificaram cerca de 438 mil espécies vegetais de interesse econômico e social na Amazônia." },
+            { question: "O solo fértil originado pela ação humana na Amazônia é conhecido como:", options: ["Terra vermelha", "Terra roxa", "Terra preta", "Terra ácida"], answer: 2, feedback: "A terra preta é um solo fértil criado por povos indígenas, importante para a agricultura." },
+            { question: "Qual bioma amazônico ocorre em áreas de relevo mais alto, não alagadas?", options: ["Igapó", "Várzea", "Manguezal", "Terra firme"], answer: 3, feedback: "As florestas de terra firme ocorrem em áreas não alagáveis e com relevo elevado." },
+            // (adicione aqui mais questões semelhantes baseadas nos trechos do documento)
+        ];
+
+        const quizForm = document.getElementById("quizForm");
+
+        questions.forEach((q, index) => {
+            const div = document.createElement("div");
+            div.className = "question";
+
+            const title = document.createElement("h3");
+            title.textContent = `Questão ${index + 1}: ${q.question}`;
+            div.appendChild(title);
+
+            const optsDiv = document.createElement("div");
+            optsDiv.className = "options";
+
+            q.options.forEach((opt, i) => {
+                const label = document.createElement("label");
+                const input = document.createElement("input");
+                input.type = "radio";
+                input.name = `q${index}`;
+                input.value = i;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(opt));
+                optsDiv.appendChild(label);
+            });
+
+            div.appendChild(optsDiv);
+            quizForm.appendChild(div);
+        });
+
+        function checkAnswers() {
+            let correct = 0;
+            let feedbackText = "<h2>Gabarito e Comentários</h2><ol>";
+
+            questions.forEach((q, i) => {
+                const selected = document.querySelector(`input[name='q${i}']:checked`);
+                const userAnswer = selected ? parseInt(selected.value) : -1;
+
+                if (userAnswer === q.answer) {
+                    correct++;
+                    feedbackText += `<li class='correct'><strong>Questão ${i + 1}:</strong> Correta. ${q.feedback}</li>`;
+                } else {
+                    feedbackText += `<li class='incorrect'><strong>Questão ${i + 1}:</strong> Incorreta. ${q.feedback}</li>`;
+                }
+            });
+
+            feedbackText += `</ol><h3>Acertos: ${correct} de ${questions.length}</h3>`;
+
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = feedbackText;
+            resultDiv.style.display = "block";
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    </script>
 </body>
 </html>
